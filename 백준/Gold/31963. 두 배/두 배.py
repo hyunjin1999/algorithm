@@ -1,10 +1,15 @@
-n = int(input())
-nums = list(map(int, input().split()))
-current = nums[0]
-ans = 0
-for i in range(1, len(nums)):
-    while nums[i-1] > nums[i]:
-        nums[i] = nums[i] * 2
-        ans += 1
-        
-print(ans)
+import math
+N = int(input())
+arr = list(map(int, input().split()))
+
+rst = 0
+cnt = [0] * N
+
+for i in range(1, N):
+    log_rst = math.log2(arr[i - 1] / arr[i])
+    temp = math.ceil(log_rst) + cnt[i - 1]
+    if temp > 0:
+        cnt[i] = temp
+        rst += cnt[i]
+
+print(rst)
